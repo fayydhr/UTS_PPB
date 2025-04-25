@@ -34,15 +34,17 @@ class MainActivity : AppCompatActivity() {
         val date = intent.getStringExtra("date")
         val time = intent.getStringExtra("time")
         val sport = intent.getStringExtra("sport")
+        val duration = intent.getStringExtra("duration") // Durasi jam yang ditambahkan
 
         // Menampilkan data pesanan jika ada
-        if (place != null && date != null && time != null && sport != null) {
+        if (place != null && date != null && time != null && sport != null && duration != null) {
             val orderDetails = """
                 Pesanan Anda:
                 Tempat: $place
                 Tanggal: $date
                 Waktu: $time
                 Jenis Olahraga: $sport
+                Durasi: $duration jam
             """.trimIndent()
             tvOrderDetails.text = orderDetails
         } else {

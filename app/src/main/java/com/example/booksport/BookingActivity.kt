@@ -8,10 +8,10 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
-
 class BookingActivity : AppCompatActivity() {
     private lateinit var etDate: EditText
     private lateinit var etTime: EditText
+    private lateinit var etDuration: EditText
     private lateinit var spinnerSport: Spinner
     private lateinit var btnSubmit: Button
     private lateinit var tvPlace: TextView
@@ -26,6 +26,7 @@ class BookingActivity : AppCompatActivity() {
 
         etDate = findViewById(R.id.etDate)
         etTime = findViewById(R.id.etTime)
+        etDuration = findViewById(R.id.etDuration)
         spinnerSport = findViewById(R.id.spinnerSport)
         btnSubmit = findViewById(R.id.btnSubmit)
         tvPlace = findViewById(R.id.tvPlace)
@@ -70,14 +71,16 @@ class BookingActivity : AppCompatActivity() {
         btnSubmit.setOnClickListener {
             val date = etDate.text.toString()
             val time = etTime.text.toString()
+            val duration = etDuration.text.toString()
 
-            if (date.isEmpty() || time.isEmpty()) {
-                Toast.makeText(this, "Tanggal dan waktu wajib diisi!", Toast.LENGTH_SHORT).show()
+            if (date.isEmpty() || time.isEmpty() || duration.isEmpty()) {
+                Toast.makeText(this, "Tanggal, waktu, dan durasi wajib diisi!", Toast.LENGTH_SHORT).show()
             } else {
                 val intent = Intent(this, ConfirmationActivity::class.java)
                 intent.putExtra("place_name", placeName)
                 intent.putExtra("date", date)
                 intent.putExtra("time", time)
+                intent.putExtra("duration", duration)
                 intent.putExtra("sport", selectedSport)
                 startActivity(intent)
             }
